@@ -1,4 +1,4 @@
-import 'package:absent_payroll/src/core/base_import.dart';
+import 'package:live_code/src/core/base_import.dart';
 
 class LogUtils {
   static log(Object? message) {

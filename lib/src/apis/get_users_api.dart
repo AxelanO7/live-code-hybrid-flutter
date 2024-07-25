@@ -11,16 +11,16 @@ class GetUsersApi extends BaseApi {
     if (CoreConfig.getDebuggableConfig("is_debug_mode")) LogUtils.log(requestPayload);
 
     try {
-      var response = await post(Uri.parse(url), headers: requestHeaders, body: json.encode(requestPayload));
+      var response = await get(Uri.parse(url), headers: requestHeaders);
 
       checkResponse(response);
 
       responseData.statusCode = response.statusCode;
       if (checkStatus200(response)) {
         var responseBody = json.decode(response.body);
-        var data = Users.fromJson(responseBody);
+        var data = List<Users>.from(responseBody.map((x) => Users.fromJson(x)));
         responseData.status = true;
-        responseData.data = data;
+        responseData.listData = data;
         responseData.message = "Success";
       }
     } catch (e) {

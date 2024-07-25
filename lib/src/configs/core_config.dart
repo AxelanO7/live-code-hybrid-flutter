@@ -10,8 +10,8 @@ class CoreConfig {
   static final bool isMacOS = !isDesktopClient && Platform.isMacOS;
 
   static const String _urlBaseAPILocal = '';
-  static const String _urlBaseAPIDebug = 'http://128.199.86.138/api';
-  static const String _urlBaseAPIProduction = 'http://128.199.86.138/api';
+  static const String _urlBaseAPIDebug = 'https://jsonplaceholder.typicode.com';
+  static const String _urlBaseAPIProduction = 'https://jsonplaceholder.typicode.com';
   static const String _urlBaseCDN = '';
 
   static bool getDebuggableConfig(String configName) {
@@ -25,7 +25,11 @@ class CoreConfig {
   static String getApiUrl() {
     String topic = _urlBaseAPIProduction;
     if (!productionMode) {
-      topic = getDebuggableConfig("is_local_server") ? _urlBaseAPILocal : getDebuggableConfig("is_debug") ? _urlBaseAPIDebug : _urlBaseAPIDebug;
+      topic = getDebuggableConfig("is_local_server")
+          ? _urlBaseAPILocal
+          : getDebuggableConfig("is_debug")
+              ? _urlBaseAPIDebug
+              : _urlBaseAPIDebug;
     }
     return topic;
   }
@@ -33,7 +37,11 @@ class CoreConfig {
   static String get getEnvironment {
     String topic = "prod";
     if (!productionMode) {
-      topic = getDebuggableConfig("is_local_server") ? 'local' : getDebuggableConfig("is_debug") ? 'dev' : 'prod';
+      topic = getDebuggableConfig("is_local_server")
+          ? 'local'
+          : getDebuggableConfig("is_debug")
+              ? 'dev'
+              : 'prod';
     }
     return topic;
   }

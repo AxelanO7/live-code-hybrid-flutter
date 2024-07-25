@@ -1,4 +1,4 @@
-import 'package:mobile_attendance/src/core/base_import.dart';
+import 'package:live_code/src/core/base_import.dart';
 
 TextEditingController _pageController = TextEditingController();
 

@@ -1,39 +1,44 @@
+import 'dart:convert';
+
 import 'package:live_code/src/core/base_import.dart';
 
-class MainPageController extends BaseController {
-  bool isSummation = false, isMultiplication = false;
-  TextEditingController firstNumberController = TextEditingController(), secondNumberController = TextEditingController();
-  double result = 0;
+class DataPageController extends BaseController {
+  bool isLoadingUser = false;
+  List<Users> listUser = [];
 
-  handleChangeCheckbox(bool? value, String s) {
-    if (s == 'summation') {
-      isMultiplication = false;
-      isSummation = value!;
-      update();
+  @override
+  onInit() {
+    super.onInit();
+  }
+
+  @override
+  onReady() {
+    getUserData();
+    super.onReady();
+  }
+
+  @override
+  onClose() {
+    super.onClose();
+  }
+  
+  handleBack() {
+    Get.back();
+  }
+
+  getUserData() async {
+    isLoadingUser = true;
+    update();
+    var res = await GetUsersApi().request();
+    if (res.status) {
+      listUser = res.listData as List<Users>;
     } else {
-      isSummation = false;
-      isMultiplication = value!;
+      Get.snackbar('Gagal', 'Gagal mendapatkan data user');
+      isLoadingUser = false;
       update();
+      return;
     }
-  }
-
-  validateInput() {
-    if (firstNumberController.text.isEmpty || secondNumberController.text.isEmpty) {
-      Get.snackbar('Gagal', 'Input tidak boleh kosong');
-      return false;
-    }
-    return true;
-  }
-
-  handleCalculate() {
-    if (validateInput()) doCalculate();
-  }
-
-  doCalculate() {
-    if (isSummation)
-      result = double.parse(firstNumberController.text) + double.parse(secondNumberController.text);
-    else
-      result = double.parse(firstNumberController.text) * double.parse(secondNumberController.text);
+    isLoadingUser = false;
     update();
   }
 }

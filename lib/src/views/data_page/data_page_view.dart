@@ -1,26 +1,26 @@
 import 'package:live_code/src/core/base_import.dart';
 
-import 'main_page_controller.dart';
-import 'main_page_desktop_page.dart';
-import 'main_page_mobile_page.dart';
+import 'data_page_controller.dart';
+import 'data_page_desktop_page.dart';
+import 'data_page_mobile_page.dart';
 
-class MainPageView extends StatelessWidget {
-  const MainPageView({super.key});
+class DataPageView extends StatelessWidget {
+  const DataPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<MainPageController>(
-      backgroundColor: ColorStyle.surfaceColor,
-      controller: MainPageController(),
+    return BaseWidget<DataPageController>(
+      backgroundColor: ColorStyle.tertiaryColor,
+      controller: DataPageController(),
       appBar: AppBar(
-        backgroundColor: ColorStyle.blackColor,
+        backgroundColor: ColorStyle.whiteColor,
         systemOverlayStyle: SystemUiOverlayStyle(
           // Android
-          statusBarColor: ColorStyle.whiteColor,
+          statusBarColor: ColorStyle.tertiaryColor,
           statusBarIconBrightness: Brightness.dark,
           // iOS
           statusBarBrightness: Brightness.light,
-          systemNavigationBarColor: ColorStyle.whiteColor,
+          systemNavigationBarColor: ColorStyle.tertiaryColor,
           systemNavigationBarIconBrightness: Brightness.light,
           systemNavigationBarDividerColor: ColorStyle.whiteColor,
         ),
@@ -29,8 +29,8 @@ class MainPageView extends StatelessWidget {
         centerTitle: true,
       ),
       extendBody: true,
-      mobile: (controller) => const MainPageMobilePage(),
-      desktop: (controller) => const MainPageDesktopPage(),
+      mobile: (controller) => const DataPageMobilePage(),
+      desktop: (controller) => const DataPageDesktopPage(),
     );
   }
 }

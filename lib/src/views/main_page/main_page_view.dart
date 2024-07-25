@@ -1,23 +1,26 @@
 import 'package:live_code/src/core/base_import.dart';
-import 'package:live_code/src/views/main/main_page_controller.dart';
 
-class MainView extends StatelessWidget {
-  const MainView({super.key});
+import 'main_page_controller.dart';
+import 'main_page_desktop_page.dart';
+import 'main_page_mobile_page.dart';
+
+class MainPageView extends StatelessWidget {
+  const MainPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BaseWidget<MainPageController>(
-      backgroundColor: ColorStyle.surfaceColor,
+      backgroundColor: ColorStyle.secondaryColor,
       controller: MainPageController(),
       appBar: AppBar(
-        backgroundColor: ColorStyle.blackColor,
+        backgroundColor: ColorStyle.whiteColor,
         systemOverlayStyle: SystemUiOverlayStyle(
           // Android
-          statusBarColor: ColorStyle.whiteColor,
+          statusBarColor: ColorStyle.secondaryColor,
           statusBarIconBrightness: Brightness.dark,
           // iOS
           statusBarBrightness: Brightness.light,
-          systemNavigationBarColor: ColorStyle.whiteColor,
+          systemNavigationBarColor: ColorStyle.secondaryColor,
           systemNavigationBarIconBrightness: Brightness.light,
           systemNavigationBarDividerColor: ColorStyle.whiteColor,
         ),
@@ -26,8 +29,8 @@ class MainView extends StatelessWidget {
         centerTitle: true,
       ),
       extendBody: true,
-      mobile: (controller) => const LoginMobilePage(),
-      desktop: (controller) => const LoginDesktopPage(),
+      mobile: (controller) => const MainPageMobilePage(),
+      desktop: (controller) => const MainPageDesktopPage(),
     );
   }
 }

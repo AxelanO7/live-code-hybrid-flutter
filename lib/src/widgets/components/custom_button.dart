@@ -1,5 +1,4 @@
-import 'package:absent_payroll/src/core/base_import.dart';
-import 'package:absent_payroll/src/styles/cores/color_style.dart';
+import 'package:live_code/src/core/base_import.dart';
 
 class CustomButton extends StatefulWidget {
   final GestureTapCallback onPressed;
@@ -104,7 +103,7 @@ class _CustomButtonState extends State<CustomButton> {
                         color: widget.enabled
                             ? darken(widget.color, widget.shadowDegree)
                             : widget.color == ColorStyle.whiteColor
-                                ? ColorStyle().grayscaleRange[50]!
+                                ? widget.color
                                 : darken(widget.color, widget.shadowDegree),
                         borderRadius: widget.shape != BoxShape.circle
                             ? BorderRadius.all(
@@ -143,7 +142,7 @@ class _CustomButtonState extends State<CustomButton> {
                             : widget.color == ColorStyle.whiteColor
                                 ? Border.all(
                                     color: widget.color == ColorStyle.whiteColor
-                                        ? ColorStyle().grayscaleRange[100]!
+                                        ? Colors.black.withOpacity(.5)
                                         : darken(ColorStyle.whiteColor, widget.shadowDegree),
                                   )
                                 : null),
@@ -154,7 +153,7 @@ class _CustomButtonState extends State<CustomButton> {
                               width: 20,
                               child: CircularProgressIndicator(
                                 color: widget.color == ColorStyle.whiteColor
-                                    ? ColorStyle.grayscaleGray3
+                                    ? Colors.black.withOpacity(.5)
                                     : widget.isOutline
                                         ? widget.color
                                         : ColorStyle.whiteColor,

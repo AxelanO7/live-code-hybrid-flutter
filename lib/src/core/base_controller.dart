@@ -82,8 +82,4 @@ class BaseController extends GetxController with WidgetsBindingObserver {
       return false;
     }
   }
-
-  Future<String> get getTeacherId async {
-    return await SettingsUtils.getString('teacher_id');
-  }
 }
